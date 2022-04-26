@@ -9,25 +9,16 @@ const carrinho = [
 ]
 
 // apenas elementos que tenham fagil true
-console.log("---------- Pegar os elementos que tenham fragil: true ----------")
 const getFragil = a => a.fragil === true
-console.log(carrinho.filter(getFragil))
 
 // pegar quantidade e preco -> qtde*preco = total
-console.log("---------- Pegar Quantidade * Preço ----------")
 const valor = (a) => (a.qtde)*(a.preco)
-
 const total =  carrinho.filter(getFragil).map(valor)
 
-console.log(total)
-
 // gerar a media dos totais
-console.log("---------- Pegar a média dos totais ----------")
 tamanho = total.length
-
 const soma = (a,b) => { 
     return  a+b
 }
-
 const somaTotais=  carrinho.filter(getFragil).map(valor).reduce(soma)
 console.log('MEDIA ->',somaTotais/tamanho)
