@@ -9,4 +9,6 @@ fn.lerDiretorio(caminho)
     .then(conteudos => conteudos.join('\n'))      // o array passa a ser uma grande string com todos os arquivos
     .then(TodoConteudo => TodoConteudo.split('\n')) //separa em varias linhas
     .then(linhas => fn.removerSeVazio(linhas))  //remove linhas vazias e algumas linhas consideradas vazias como /r
+    .then(linhas => fn.removerSeIncluir(linhas, '-->'))
+    .then(linhas => fn.removerSeApenasNumero(linhas))
     .then(console.log)
