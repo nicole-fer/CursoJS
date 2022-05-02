@@ -8,4 +8,5 @@ fn.lerDiretorio(caminho)
     .then(arquivosSRT => fn.lerArquivos(arquivosSRT)) //ler todo os conteudo
     .then(conteudos => conteudos.join('\n'))      // o array passa a ser uma grande string com todos os arquivos
     .then(TodoConteudo => TodoConteudo.split('\n')) //separa em varias linhas
+    .then(linhas => fn.removerSeVazio(linhas))  //remove linhas vazias e algumas linhas consideradas vazias como /r
     .then(console.log)
