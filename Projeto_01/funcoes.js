@@ -16,7 +16,7 @@ function lerDiretorio(caminho){
 function lerArquivo(caminho){
     return new Promise((resolve,reject) => {
         try{
-            const conteudo = fs.readdirSync(caminho,{encoding: 'utf-8'})
+            const conteudo = fs.readFileSync(caminho,{encoding: 'utf-8'})
             resolve(conteudo.toString())
         } catch(e){
             reject(e)
