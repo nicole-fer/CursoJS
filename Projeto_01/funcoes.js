@@ -30,17 +30,24 @@ function lerArquivos (caminhos){
     return Promise.all(caminhos.map(caminho => lerArquivo(caminho)))      //espera receber um array de Promise
 }
 
-function elementosTerminadosCom(array, padraoTextual){
-      // endsWith -> metodo que se for terminado com o padrao (parametro), retorna verdadeiro
-    return array.filter(ele => ele.endsWith(padraoTextual))      
+function elementosTerminadosCom(padraoTextual){
+    return function(array){
+        return array.filter(ele => ele.endsWith(padraoTextual)) 
+    }
+      // endsWith -> metodo que se for terminado com o padrao (parametro), retorna verdadeiro 
 }
 
 function removerSeVazio (array){
     return array.filter(el => el.trim())
 }
 
-function removerSeIncluir(array, padraoTextual){
-    return array.filter(el => !el.includes(padraoTextual))
+
+// a resposta da função sera passada pro then
+function removerSeIncluir(padraoTextual){
+    return function(array){
+        return array.filter(el => !el.includes(padraoTextual))
+    }
+    
 }
 
 function removerSeApenasNumero(array){
