@@ -70,12 +70,28 @@ function removerSimbolos(simbolos){
 }
 
 function mesclarElementos (array){
-    return array.join('')
+    return array.join(' ')
 }
 
 function separarTextoPor(simbolo){
     return function(texto){
         return texto.split(simbolo)
+    }
+}
+
+function agruparElementos(palavras){
+    return Object.values(palavras.reduce((acc,palavra)=> {
+        const el = palavra.toLowerCase()
+        const qtde= acc[el] ? acc[el].qtde + 1 : 1 
+        acc[el] = {elemento: el, qtde}
+        return acc
+    }, {}))
+}
+
+function ordenarPorAtribNumericos(attr, ordem = 'asc'){
+    return function(array){
+        const desc = (o1, o2) => o2[attr] - o1[attr]
+        return array.sort(ordem === 'asc' ? asc : desc)
     }
 }
 
@@ -89,5 +105,7 @@ module.exports = {
     removerSeApenasNumero,
     removerSimbolos,
     mesclarElementos,
-    separarTextoPor
+    separarTextoPor,
+    agruparElementos,
+    ordenarPorAtribNumericos
 }

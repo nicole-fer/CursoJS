@@ -3,21 +3,11 @@ const fn = require('./funcoes')
 
 const caminho = path.join(__dirname,'..','dados','legendas','legendas')
 const simbolos = [
-    '.', '?', '-',',', '"', '♪' , '_', '<i>', '</i>', '\r', '[', ']','(', ')','\''
+    '.', '?', '-',',', '"', '♪' , '_', '<i>', '</i>', '\r', '[', ']','(', ')', "\'"
 ]
 
 // recebe um array de palavras
-function agruparPalavras(palavras){
-    return palavras.reduce((agrupamento,palavra)=> {
-        const p = palavra.toLowerCase()
-        if(agrupamento[p]){
-            agrupamento[p] += 1
-        } else{
-            agrupamento[p] = 1
-        }
-        return agrupamento
-    }, {})
-}
+
 
 fn.lerDiretorio(caminho)
     .then(fn.elementosTerminadosCom('.srt')) //filtra os arquivos srt
@@ -33,5 +23,6 @@ fn.lerDiretorio(caminho)
     .then(fn.separarTextoPor(' '))
     .then(fn.removerSeVazio)
     .then(fn.removerSeApenasNumero)
-    .then(agruparPalavras)
+    .then(fn.agruparElementos)
+    .then(fn.ordenarPorAtribNumericos('qtde', 'desc'))
     .then(console.log)
