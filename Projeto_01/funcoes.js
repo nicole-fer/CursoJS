@@ -25,7 +25,6 @@ function lerArquivo(caminho){
 }
 
 //espera ler todos os arquivos para retornar um array
-
 function lerArquivos (caminhos){
     return Promise.all(caminhos.map(caminho => lerArquivo(caminho)))      //espera receber um array de Promise
 }
@@ -40,7 +39,6 @@ function elementosTerminadosCom(padraoTextual){
 function removerSeVazio (array){
     return array.filter(el => el.trim())
 }
-
 
 // a resposta da função sera passada pro then
 function removerSeIncluir(padraoTextual){
